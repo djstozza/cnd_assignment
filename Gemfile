@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'underscore-rails'
 gem 'gmaps4rails'
+gem 'geokit-rails'
 gem 'httparty'
 gem 'gon'
 # Use jquery as the JavaScript library

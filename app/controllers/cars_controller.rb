@@ -6,7 +6,7 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all
     @cars.each do |car|
-      gon.coord = car
+      gon.car = car
     end
   end
 
