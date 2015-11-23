@@ -38,7 +38,7 @@ initMap = function () {
     title: gon.current_user.username
   });
   user_marker.setMap(map);
-
+  
   var userContentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
@@ -54,7 +54,7 @@ initMap = function () {
 
   user_marker.addListener('click', function() {
       userInfoWindow.open(map, user_marker);
-    });
+  });
   
   var carIcon = "<%= image_path 'carrental.png' %>";
 
@@ -69,12 +69,17 @@ initMap = function () {
     });
     marker.setMap(map);
 
+    var latLngA = new google.maps.LatLng(gon.current_user.latitude, gon.current_user.longitude);
+    var latLngB = new google.maps.LatLng(gon.car.latitude, gon.car.longitude);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA,latLngB);
+    
     var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
         '<h2 id="firstHeading" class="firstHeading">Vehicle ' + gon.car.vehicle_id +'</h2>'+
         '<div id="bodyContent">'+
         '<p><b>Latitude:</b> ' + gon.car.latitude + ', <b>Longitude:</b> ' + gon.car.longitude + '</p>'+
+        '<p><b>Distance from' + gon.current_user.username + ': </b> ' + parseInt(distance/1000)+ 'km</p>'+
         '</div>'+
         '</div>';
 
@@ -85,6 +90,10 @@ initMap = function () {
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
+
+   
+    
+
   } else if ($('div.indexMap').length > 0) {
     _.each(gon.cars, function (car) {
       var carLatLng = {lat: car.latitude, lng: car.longitude};
@@ -95,14 +104,19 @@ initMap = function () {
         map: map,
         title: 'Vehicle ' + car.vehicle_id
       });
-    marker.setMap(map);
+      marker.setMap(map);
 
+      var latLngA = new google.maps.LatLng(gon.current_user.latitude, gon.current_user.longitude);
+      var latLngB = new google.maps.LatLng(car.latitude, car.longitude);
+      var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA,latLngB);
+     
       var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
         '<h2 id="firstHeading" class="firstHeading">Vehicle ' + car.vehicle_id +'</h2>'+
         '<div id="bodyContent">'+
         '<p><b>Latitude:</b> ' + car.latitude + ', <b>Longitude:</b> ' + car.longitude + '</p>'+
+        '<p><b>Distance from ' + gon.current_user.username + ': </b> ' + parseInt(distance/1000)+ 'km</p>'+
         '</div>'+
         '</div>';
 
@@ -113,6 +127,8 @@ initMap = function () {
       marker.addListener('click', function() {
         infowindow.open(map, marker);
       }); 
+      
+      
     })
 
   }
