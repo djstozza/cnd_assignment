@@ -1,4 +1,4 @@
-function initMap() {
+initMap = function () {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 0, lng: 0},
     zoom: 1,
@@ -10,14 +10,14 @@ function initMap() {
 
   var moonMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {
-        var normalizedCoord = getNormalizedCoord(coord, zoom);
-        if (!normalizedCoord) {
-          return null;
-        }
-        var bound = Math.pow(2, zoom);
-        return '//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw' +
-            '/' + zoom + '/' + normalizedCoord.x + '/' +
-            (bound - normalizedCoord.y - 1) + '.jpg';
+      var normalizedCoord = getNormalizedCoord(coord, zoom);
+      if (!normalizedCoord) {
+        return null;
+      }
+      var bound = Math.pow(2, zoom);
+      return '//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw' +
+          '/' + zoom + '/' + normalizedCoord.x + '/' +
+          (bound - normalizedCoord.y - 1) + '.jpg';
     },
     tileSize: new google.maps.Size(256, 256),
     maxZoom: 9,
@@ -25,23 +25,75 @@ function initMap() {
     radius: 1738000,
     name: 'Moon'
   });
+  
 
   map.mapTypes.set('moon', moonMapType);
   map.setMapTypeId('moon');
+  if ($('div.mapShow').length > 0) {
+    var carLatLng = {lat: gon.car.latitude, lng: gon.car.longitude};
 
-  var carLatLng = {lat: gon.car.latitude, lng: gon.car.longitude};
-  console.log(carLatLng);
-  var marker = new google.maps.Marker({
-    position: carLatLng,
-    map: map,
-    title: 'Vehicle' + gon.car.vehicle_id
-  });
-  marker.setMap(map);
+    var marker = new google.maps.Marker({
+      position: carLatLng,
+      map: map,
+      title: 'Vehicle ' + gon.car.vehicle_id
+    });
+    marker.setMap(map);
+
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">Vehicle ' + gon.car.vehicle_id +'</h2>'+
+        '<div id="bodyContent">'+
+        '<p><b>Latitude:</b> ' + gon.car.latitude + ', <b>Longitude:</b> ' + gon.car.longitude + '</p>'+
+        '</div>'+
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+
+  if ($('div.indexMap').length > 0) {
+    _.each(gon.cars, function (car) {
+    var carLatLng = {lat: car.latitude, lng: car.longitude};
+
+    var marker = new google.maps.Marker({
+      position: carLatLng,
+      map: map,
+      title: 'Vehicle ' + car.vehicle_id
+    });
+    marker.setMap(map);
+
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">Vehicle ' + car.vehicle_id +'</h2>'+
+        '<div id="bodyContent">'+
+        '<p><b>Latitude:</b> ' + car.latitude + ', <b>Longitude:</b> ' + car.longitude + '</p>'+
+        '</div>'+
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    }); 
+  })
+
+  }
+  
 }
+
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
-function getNormalizedCoord(coord, zoom) {
+getNormalizedCoord = function (coord, zoom) {
   var y = coord.y;
   var x = coord.x;
 
