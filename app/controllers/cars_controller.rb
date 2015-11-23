@@ -5,11 +5,16 @@ class CarsController < ApplicationController
   # GET /cars.json
   def index
     @cars = Car.all
+    @cars.each do |car|
+      gon.coord = car
+    end
   end
 
   # GET /cars/1
   # GET /cars/1.json
   def show
+    @car = Car.find(params[:id])
+    gon.coord = @car
   end
 
   # GET /cars/new
