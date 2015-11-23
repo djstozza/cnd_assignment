@@ -23,3 +23,6 @@ until HTTParty.get(base_uri + "#{i}" + ending)["message"] == "Resource not found
 	Car.create :vehicle_id => response["vehicle_id"], :latitude => response["lat"], :longitude => response["long"]
 	i +=1	
 end
+
+User.destroy_all
+u1 = User.create :email => "admin@cdn.com.au", :username => "admin", :password => "12345678", :latitude => "0.681400", :longitude => "23.460550"

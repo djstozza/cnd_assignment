@@ -2,7 +2,7 @@
 #
 # Table name: cars
 #
-#  id         :integer          default(0)
+#  id         :integer          not null, primary key
 #  vehicle_id :integer
 #  latitude   :float
 #  longitude  :float

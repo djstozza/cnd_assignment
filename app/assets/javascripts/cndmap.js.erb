@@ -26,13 +26,43 @@ initMap = function () {
     name: 'Moon'
   });
   
-
   map.mapTypes.set('moon', moonMapType);
   map.setMapTypeId('moon');
+
+  var userLatLng = {lat: gon.current_user.latitude, lng: gon.current_user.longitude}
+  var base_icon = "<%= image_path 'spaceport-2.png' %>"
+  var user_marker = new google.maps.Marker({
+    icon: base_icon,
+    position: userLatLng,
+    map: map,
+    title: gon.current_user.username
+  });
+  user_marker.setMap(map);
+
+  var userContentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + gon.current_user.username +'</h2>'+
+        '<div id="bodyContent">'+
+        '<p><b>Latitude:</b> ' + gon.current_user.latitude + ', <b>Longitude:</b> ' + gon.current_user.longitude + '</p>'+
+        '</div>'+
+        '</div>';
+
+  var userInfoWindow = new google.maps.InfoWindow({
+    content: userContentString
+  });
+
+  user_marker.addListener('click', function() {
+      userInfoWindow.open(map, user_marker);
+    });
+  
+  var carIcon = "<%= image_path 'carrental.png' %>";
+
   if ($('div.mapShow').length > 0) {
     var carLatLng = {lat: gon.car.latitude, lng: gon.car.longitude};
 
     var marker = new google.maps.Marker({
+      icon: carIcon,
       position: carLatLng,
       map: map,
       title: 'Vehicle ' + gon.car.vehicle_id
@@ -55,20 +85,19 @@ initMap = function () {
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
-  }
-
-  if ($('div.indexMap').length > 0) {
+  } else if ($('div.indexMap').length > 0) {
     _.each(gon.cars, function (car) {
-    var carLatLng = {lat: car.latitude, lng: car.longitude};
+      var carLatLng = {lat: car.latitude, lng: car.longitude};
 
-    var marker = new google.maps.Marker({
-      position: carLatLng,
-      map: map,
-      title: 'Vehicle ' + car.vehicle_id
-    });
+      var marker = new google.maps.Marker({
+        icon: carIcon,
+        position: carLatLng,
+        map: map,
+        title: 'Vehicle ' + car.vehicle_id
+      });
     marker.setMap(map);
 
-    var contentString = '<div id="content">'+
+      var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
         '<h2 id="firstHeading" class="firstHeading">Vehicle ' + car.vehicle_id +'</h2>'+
@@ -77,14 +106,14 @@ initMap = function () {
         '</div>'+
         '</div>';
 
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
 
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    }); 
-  })
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      }); 
+    })
 
   }
   
