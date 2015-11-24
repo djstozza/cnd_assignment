@@ -1,3 +1,27 @@
-// Place all the styles related to the Session controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	
+	text-align: center;
+	margin: auto;
+
+	input.form-control{
+		max-width: 407px;
+	}
+
+	img.rover {
+		max-width: 450px;
+		border: 1px solid white;
+		border-radius: 5%;
+		margin-bottom: 15px;
+
+	}
+
+	p.paragraph {
+		color: white;
+		
+		a {
+			color: blue;
+			text-decoration: underline;
+		}
+	}
+
+}

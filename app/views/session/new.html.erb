@@ -1,3 +1,5 @@
+<img class="rover" src="<%= image_path 'LunarRover.jpg' %>" alt="Lunar Rover">
+
 <div class="row">
 	<div class="col-md-4"></div>
 	<%= form_tag '/login' do %>
@@ -17,4 +19,4 @@
 	<%= submit_tag "Sign In", :class => 'btn btn-default' %>
 	<% end %>
 </div>	
-<p>Not a user?? Please  <%= link_to 'Sign Up', new_user_path %></p>
+<p class="paragraph">Not a user?? Please  <%= link_to 'Sign Up', new_user_path %></p>

@@ -15,7 +15,8 @@
 class User < ActiveRecord::Base
 	has_secure_password
 
-	acts_as_mappable	:default_units => :kms,
-						:default_formula => :sphere,
-						:distance_field_name => :distance
+	validates :email, :presence => true, :uniqueness => true
+	validates :username, :presence => true, :uniqueness => true
+	validates :latitude, :presence => true
+	validates :longitude, :presence => true
 end

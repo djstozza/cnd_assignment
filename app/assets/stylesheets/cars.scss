@@ -1,3 +1,52 @@
-// Place all the styles related to the Cars controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*@font-face {
+    font-family: Space_Age;
+    
+    src: "<%= font_path 'Space_Age.tff' %>" format('truetype');
+         
+}*/
+h1 {
+	font-family: Space_Age;
+	text-align: center;
+	text-decoration: underline;
+	font-size: 50px;
+	color: white;
+
+}
+
+
+
+h2 {
+	font-family: Space_Age;
+	font-size: 25px;
+}
+div#map {
+	margin: auto;
+	border: 1px solid white;
+}
+
+table.table {
+	max-width: 900px;
+	margin: auto;
+	
+	th {
+		color: white;
+		font-family: Space_Age;
+		vertical-align: middle;
+
+	}
+	
+	th, td {
+		text-align: center;
+		width: 200px;
+		a {
+			color:blue;
+			text-decoration: underline;
+		}
+
+	
+		
+	}
+	tr:nth-child(even) {
+		color: white
+	}
+}

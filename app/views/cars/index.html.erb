@@ -2,27 +2,26 @@
 
 
 
-<h2>Cars</h2>
+<h1>Cars</h1>
 
 
-<div id="map" class="indexMap" style='width: 800px; height: 400px;'></div>
+<div id="map" class="indexMap" style='max-width: 800px; height: 400px;'></div>
 
 
-<table>
+<table class="table table-striped table-bordered">
   <thead>
     <tr>
-      <th>Vehicle ID</th>
+      <th>Car Name</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Distance from <%= @current_user.username %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= car.vehicle_id %></td>
+        <td><%= link_to "Car #{car.vehicle_id}", car %></td>
         <td><%= car.latitude %></td>
         <td><%= car.longitude %></td>
         <!-- Haversine formula: giving great-circle distances between two points on a sphere from their longitudes and latitudes  -->
@@ -39,9 +38,6 @@
          %>
          <% end %>
         <td><%= distance([@current_user.latitude, @current_user.longitude],[car.latitude,car.longitude]).to_i %> km</td>
-        <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

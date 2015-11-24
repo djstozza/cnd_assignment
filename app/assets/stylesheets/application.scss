@@ -16,3 +16,15 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "cars.scss";
+@import "session.scss";
+
+@font-face {
+    font-family: "Space_Age";
+    src: url('fonts/space_age.otf') format("truetype");
+}
+
+body {
+	background-image: image-url('stars.jpg');
+	background-size: cover;
+}
