@@ -18,10 +18,13 @@ h1 {
 h2 {
 	font-family: Space_Age;
 	font-size: 25px;
+	color: grey;
 }
 div#map {
 	margin: auto;
 	border: 1px solid white;
+	max-width: 800px;
+	height: 400px;
 }
 
 table.table {
@@ -29,10 +32,9 @@ table.table {
 	margin: auto;
 	
 	th {
-		color: white;
+		color: grey;
 		font-family: Space_Age;
 		vertical-align: middle;
-
 	}
 	
 	th, td {
