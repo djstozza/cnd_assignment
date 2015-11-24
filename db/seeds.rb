@@ -12,7 +12,6 @@ end
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Car.destroy_all
-require 'HTTParty'
 base_uri = "https://cndlunarlocator.herokuapp.com/vehicles/"
 ending = "/locate.json"
 
