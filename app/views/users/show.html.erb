@@ -1,24 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<h2><%= @user.username %></h2>
+<img class="rover" src="<%= image_path 'space_car1.jpg' %>" alt="Space Car">
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<table class="table table-striped table-bordered">
+	<thead>
+    	<tr>
+      		<th>Email</th>
+      		<th>Latitude</th>
+      		<th>Longitude</th>
+    	</tr>
+  	</thead>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @user.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @user.longitude %>
-</p>
+	<tbody>
+		<tr>
+			<td><%= @user.email %></td>
+        	<td><%= @user.latitude %></td>
+        	<td><%= @user.longitude %></td>
+		</tr>
+	</tbody>
+</table>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

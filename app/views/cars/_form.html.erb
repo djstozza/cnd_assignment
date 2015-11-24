@@ -10,19 +10,26 @@
       </ul>
     </div>
   <% end %>
-  
-  <div class="field">
-    <%= f.label :vehicle_id %><br>
-    <%= f.text_field :vehicle_id %>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="form-group col-md-4">
+      <%= f.label :vehicle_id, :class => 'sr-only', :for => 'exampleInputVehicleID3' %>
+      <%= f.text_field :vehicle_id, :class => 'form-control', :id => 'exampleInputEmail3', :placeholder => 'Vehicle ID' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="form-group col-md-4">
+      <%= f.label :latitude, :class => 'sr-only', :for => 'exampleInputLatitude3' %>
+      <%= f.number_field :latitude, :class => 'form-control', :id => 'exampleInputLatitude3', :placeholder => 'Latitude', :step => 'any', :max => 85, :min => -85 %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="form-group col-md-4">
+      <%= f.label :longitude, :class => 'sr-only', :for => 'exampleInputLongitude3' %>
+      <%= f.number_field :longitude, :class => 'form-control', :id => 'exampleInputLongitude3', :placeholder => 'Longitude', :step => 'any', :max => 180, :min => -180 %>
+    </div>
   </div>
   <div class="actions">
     <%= f.submit %>

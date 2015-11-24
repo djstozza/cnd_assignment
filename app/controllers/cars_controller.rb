@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_if_logged_in
   # GET /cars
   # GET /cars.json
   def index
@@ -77,5 +77,9 @@ class CarsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
       params.require(:car).permit(:vehicle_id, :latitude, :longitude)
+    end
+
+    def check_if_logged_in
+      redirect_to root_path unless @current_user.present?
     end
 end

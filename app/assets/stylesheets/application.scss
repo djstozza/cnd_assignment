@@ -43,23 +43,25 @@ body {
 			width: 82px;
 			border: 1px solid white;
 		}
-		li.active {
-			
+		li.active {		
 			a {
 				font-family: Space_Age;
 				color: white;
+				font-size: 18px;
 				
 			}
 		}
 
-		
+			
 		.navbar-nav > li > a{
 			font-family: Space_Age;
 			color: white;
+			font-size: 18px;
 		}
 
 		a.navbar-brand {
 			margin-left: 0;
+			font-size: 18px;
 		}
 	}
 

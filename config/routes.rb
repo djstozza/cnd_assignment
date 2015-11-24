@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'session/new'
 
   resources :users
-  root :to => 'cars#index'
+  root :to => 'session#new'
   resources :cars
   
   get '/session' => 'session#show'
