@@ -2,11 +2,10 @@
 
 
 
-<h1>Listing Cars</h1>
+<h2>Cars</h2>
 
-<div style='width: 800px;'>
-  <div id="map" class="indexMap" style='width: 800px; height: 400px;'></div>
-</div>
+
+<div id="map" class="indexMap" style='width: 800px; height: 400px;'></div>
 
 
 <table>
@@ -15,6 +14,7 @@
       <th>Vehicle ID</th>
       <th>Latitude</th>
       <th>Longitude</th>
+      <th>Distance from <%= @current_user.username %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,6 +25,20 @@
         <td><%= car.vehicle_id %></td>
         <td><%= car.latitude %></td>
         <td><%= car.longitude %></td>
+        <!-- Haversine formula: giving great-circle distances between two points on a sphere from their longitudes and latitudes  -->
+        <% def distance loc1, loc2
+              rad_per_deg = Math::PI/180
+              moon_radius_km = 1737 
+              dlat_rad = (loc2[0]-loc1[0]) * rad_per_deg
+              dlon_rad = (loc2[1]-loc1[1]) * rad_per_deg
+              lat1_rad, lon1_rad = loc1.map {|i| i * rad_per_deg }
+              lat2_rad, lon2_rad = loc2.map {|i| i * rad_per_deg }
+              a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
+              c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
+              moon_radius_km * c
+         %>
+         <% end %>
+        <td><%= distance([@current_user.latitude, @current_user.longitude],[car.latitude,car.longitude]).to_i %> km</td>
         <td><%= link_to 'Show', car %></td>
         <td><%= link_to 'Edit', edit_car_path(car) %></td>
         <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
