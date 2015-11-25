@@ -44,6 +44,8 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'

@@ -11,7 +11,24 @@
 #
 
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Car, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it  "has a valid factory" do
+  	FactoryGirl.create(:car).should be_valid
+  end
+
+  it "is invalid without a vehicle_id" do
+  	FactoryGirl.build(:car, vehicle_id: nil).should_not be_valid
+  end
+
+  it "is invalid without a latitude" do
+  	FactoryGirl.build(:car, latitude: nil).should_not be_valid
+  end
+
+  it "is invalid without a longitude" do
+  	FactoryGirl.build(:car, longitude: nil).should_not be_valid
+  end
+
+  #TODO testing for uniqueness
 end

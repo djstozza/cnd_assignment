@@ -143,7 +143,7 @@ distance = function (latlng1, latlng2) {
   c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)),
   d = R * c;
   console.log(parseInt(d*1.03));
-  return parseInt(Math.ceil(d*1.0027)) + ' km'; //JavaScript formula slightly off ruby calcs by between 1.027 and 1.035... I trust ruby over javascript when it comes to calculations...
+  return parseInt(Math.ceil(d*1.0029)) + ' km'; //JavaScript formula slightly off ruby calcs by between 1.027 and 1.035... I trust ruby over javascript when it comes to calculations...
 }
 
 
