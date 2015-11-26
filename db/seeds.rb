@@ -14,5 +14,5 @@
 	
 
 	User.destroy_all
-	u1 = User.create :email => "admin@cnd.com.au", :username => "admin", :password => "12345678", :latitude => "0.681400", :longitude => "23.460550"
+	u1 = User.create :id => "1", :email => "admin@cnd.com.au", :username => "admin", :password => "12345678", :latitude => "0.681400", :longitude => "23.460550"
 # end
