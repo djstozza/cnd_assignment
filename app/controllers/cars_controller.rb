@@ -1,9 +1,11 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
   before_action :check_if_logged_in
+  
   # GET /cars
   # GET /cars.json
   def index
+    get_cars
     @cars = Car.all
     car_array = []
     @cars.each do |car|
@@ -31,7 +33,17 @@ class CarsController < ApplicationController
   # POST /cars
   # POST /cars.json
   def create
-    @car = Car.new(car_params)
+  Car.destroy_all
+    base_uri = "https://cndlunarlocator.herokuapp.com/vehicles/"
+    ending = "/locate.json"
+
+    i = 0
+
+    until HTTParty.get(base_uri + "#{i}" + ending)["message"] == "Resource not found"
+      response = HTTParty.get(base_uri + "#{i}" + ending)
+      Car.create :vehicle_id => response["vehicle_id"], :latitude => response["lat"], :longitude => response["long"]
+      i +=1
+    end
 
     respond_to do |format|
       if @car.save
@@ -76,10 +88,38 @@ class CarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
-      params.require(:car).permit(:vehicle_id, :latitude, :longitude)
+      params.require(:car).permit(:latitude, :longitude)
     end
 
     def check_if_logged_in
       redirect_to root_path unless @current_user.present?
     end
+
+    def get_cars
+      base_uri = "https://cndlunarlocator.herokuapp.com/vehicles/"
+      ending = "/locate.json"
+
+      i = 0
+      arr = []
+      while JSON.parse(Curl.get(base_uri + "#{i}" + ending).body_str)["message"] != "Resource not found"
+        response = JSON.parse(Curl.get(base_uri + "#{i}" + ending).body_str)
+        # Car.create :id => response["vehicle_id"], :latitude => response["lat"], :longitude => response["long"]
+        arr << response
+        i +=1
+      end
+
+      arr.each_with_index do |car, i|
+        vehicle = Car.where(:id => i).first
+        if vehicle.present? && vehicle.latitude == car['latitude'] && vehicle.longitude == car['longitude']
+          next
+        elsif if vehicle.present? && (vehicle.latitude!= car['latitude'] && vehicle.longitude != car['longitude'])
+            vehicle.latitude = car['latitude']
+            vehicle.longitude = car['longitude']
+        else
+          Car.create :id => car["vehicle_id"], :latitude => car["lat"], :longitude => car["long"]
+          i+=1
+        end
+      end
+    end
+  end
 end

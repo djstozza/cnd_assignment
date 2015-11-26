@@ -15,11 +15,13 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'underscore-rails'
+gem 'json'
 gem 'gmaps4rails'
 gem 'geokit-rails'
 gem 'bootstrap-sass'
 gem 'httparty'
 gem 'gon'
+gem 'curb'
 gem 'heroku-deflater', :group => :production
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -50,6 +52,7 @@ group :development, :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'capybara'
+
 end
 
 group :development do
