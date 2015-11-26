@@ -65,7 +65,7 @@ initMap = function () {
       icon: carIcon,
       position: carLatLng,
       map: map,
-      title: 'Car ' + gon.car.vehicle_id
+      title: 'Car ' + gon.car.id
     });
     marker.setMap(map);
 
@@ -74,7 +74,7 @@ initMap = function () {
     var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
-        '<h2 id="firstHeading" class="firstHeading">Car ' + gon.car.vehicle_id +'</h2>'+
+        '<h2 id="firstHeading" class="firstHeading">Car ' + gon.car.id +'</h2>'+
         '<div id="bodyContent">'+
         '<p><b>Latitude:</b> ' + gon.car.latitude + ', <b>Longitude:</b> ' + gon.car.longitude + '</p>'+
         '<p><b>Distance from ' + gon.current_user.username + ': </b> ' + distance(userLatLng, carLatLng) + '</p>'+
@@ -97,7 +97,7 @@ initMap = function () {
         icon: carIcon,
         position: carLatLng,
         map: map,
-        title: 'Car ' + car.vehicle_id
+        title: 'Car ' + car.id
       });
       marker.setMap(map);
 
@@ -108,7 +108,7 @@ initMap = function () {
       var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
-        '<h2 id="firstHeading" class="firstHeading">Car ' + car.vehicle_id +'</h2>'+
+        '<h2 id="firstHeading" class="firstHeading">Car ' + car.id +'</h2>'+
         '<div id="bodyContent">'+
         '<p><b>Latitude:</b> ' + car.latitude + ', <b>Longitude:</b> ' + car.longitude + '</p>'+
         '<p><b>Distance from ' + gon.current_user.username + ': </b> ' + distance(userLatLng, carLatLng) + '</p>'+  

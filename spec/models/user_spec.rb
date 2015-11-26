@@ -39,5 +39,8 @@ RSpec.describe User, type: :model do
   it "is invalid without a password" do
   	FactoryGirl.build(:user, password: nil).should_not be_valid
   end
+  it { should validate_uniqueness_of(:email) }
+  it { should validate_uniqueness_of(:username) }
+  it { should validate_uniqueness_of(:id) }
   #TODO testing uniqueness for email and username
 end

@@ -18,7 +18,7 @@
 			<td>Car <%= @car.id %></td>
         	<td><%= @car.latitude %></td>
         	<td><%= @car.longitude %></td>
-			<td><%= distance([@current_user.latitude, @current_user.longitude],[@car.latitude, @car.longitude]).to_i %> km</td>
+			<td><%= distance([@current_user.latitude, @current_user.longitude],[@car.latitude, @car.longitude]) %> km</td>
 		</tr>
 	</tbody>
 </table>

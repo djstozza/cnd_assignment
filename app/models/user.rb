@@ -14,7 +14,7 @@
 
 class User < ActiveRecord::Base
 	has_secure_password
-
+	validates :id, :presence => true, :uniqueness => true
 	validates :email, :presence => true, :uniqueness => true
 	validates :username, :presence => true, :uniqueness => true
 	validates :latitude, :presence => true

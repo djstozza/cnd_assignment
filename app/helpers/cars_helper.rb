@@ -9,6 +9,7 @@ module CarsHelper
 	    lat2_rad, lon2_rad = loc2.map {|i| i * rad_per_deg }
 	    a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
 	    c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
-	    moon_radius_km * c
+	    kilometres = moon_radius_km * c
+	    return kilometres.to_i
 	end
 end

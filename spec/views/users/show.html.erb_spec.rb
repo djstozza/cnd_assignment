@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "users/show", type: :view do
   before(:each) do
     @user = assign(:user, User.create!(
+      :id => 1,
       :email => "Email",
       :username => "Username",
       :latitude => 1.5,

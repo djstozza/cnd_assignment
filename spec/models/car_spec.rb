@@ -29,5 +29,5 @@ RSpec.describe Car, type: :model do
   	FactoryGirl.build(:car, longitude: nil).should_not be_valid
   end
 
-  #TODO testing for uniqueness
+  it { should validate_uniqueness_of(:id) }
 end
