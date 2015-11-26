@@ -103,7 +103,6 @@ class CarsController < ApplicationController
       arr = []
       while JSON.parse(Curl.get(base_uri + "#{i}" + ending).body_str)["message"] != "Resource not found"
         response = JSON.parse(Curl.get(base_uri + "#{i}" + ending).body_str)
-        # Car.create :id => response["vehicle_id"], :latitude => response["lat"], :longitude => response["long"]
         arr << response
         i +=1
       end
@@ -112,14 +111,11 @@ class CarsController < ApplicationController
         vehicle = Car.where(:id => i).first
         if vehicle.present? && vehicle.latitude == car['latitude'] && vehicle.longitude == car['longitude']
           next
-        elsif if vehicle.present? && (vehicle.latitude!= car['latitude'] && vehicle.longitude != car['longitude'])
-            vehicle.latitude = car['latitude']
-            vehicle.longitude = car['longitude']
         else
+          vehicle.destroy
           Car.create :id => car["vehicle_id"], :latitude => car["lat"], :longitude => car["long"]
           i+=1
         end
       end
     end
-  end
 end
