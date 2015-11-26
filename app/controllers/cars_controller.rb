@@ -112,7 +112,7 @@ class CarsController < ApplicationController
         vehicle = Car.where(:id => i).first
         if vehicle.present? && vehicle.latitude == car['latitude'] && vehicle.longitude == car['longitude']
           next
-        elsif vehicle.present? && vehicle.latitude != car['latitude'] && vehicle.longitude != car['longitude']
+        elsif vehicle.present? && (vehicle.latitude != car['latitude'] || vehicle.longitude != car['longitude'])
           vehicle.destroy
           Car.create :id => car["vehicle_id"], :latitude => car["lat"], :longitude => car["long"]
           i+=1
