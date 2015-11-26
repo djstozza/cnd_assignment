@@ -6,7 +6,9 @@ RSpec.describe "users/new", type: :view do
       :email => "MyString",
       :username => "MyString",
       :latitude => 1.5,
-      :longitude => 1.5
+      :longitude => 1.5,
+      :password => "12345678",
+      :password_confirmation => "12345678"
     ))
   end
 
@@ -22,6 +24,10 @@ RSpec.describe "users/new", type: :view do
       assert_select "input#user_latitude[name=?]", "user[latitude]"
 
       assert_select "input#user_longitude[name=?]", "user[longitude]"
+
+      assert_select "input#user_password[name=?]", "user[password]"
+
+      assert_select "input#user_password_confirmation[name=?]", "user[password_confirmation]"
     end
   end
 end

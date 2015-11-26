@@ -11,17 +11,7 @@ ActiveRecord::Base.connection.tables.each do |table|
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-	Car.destroy_all
-	base_uri = "https://cndlunarlocator.herokuapp.com/vehicles/"
-	ending = "/locate.json"
-
-	i = 0
-
-	until HTTParty.get(base_uri + "#{i}" + ending)["message"] == "Resource not found"
-		response = HTTParty.get(base_uri + "#{i}" + ending)
-		Car.create :vehicle_id => response["vehicle_id"], :latitude => response["lat"], :longitude => response["long"]
-		i +=1
-	end
+	
 
 	User.destroy_all
 	u1 = User.create :email => "admin@cdn.com.au", :username => "admin", :password => "12345678", :latitude => "0.681400", :longitude => "23.460550"

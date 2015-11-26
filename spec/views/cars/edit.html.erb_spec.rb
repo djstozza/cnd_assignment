@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "cars/edit", type: :view do
   before(:each) do
     @car = assign(:car, Car.create!(
+      :id => 1,
       :latitude => 1.5,
       :longitude => 1.5
     ))

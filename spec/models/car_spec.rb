@@ -3,7 +3,6 @@
 # Table name: cars
 #
 #  id         :integer          not null, primary key
-#  vehicle_id :integer
 #  latitude   :float
 #  longitude  :float
 #  created_at :datetime         not null
@@ -18,8 +17,8 @@ RSpec.describe Car, type: :model do
   	FactoryGirl.create(:car).should be_valid
   end
 
-  it "is invalid without a vehicle_id" do
-  	FactoryGirl.build(:car, vehicle_id: nil).should_not be_valid
+  it "is invalid without an id" do
+  	FactoryGirl.build(:car, id: nil).should_not be_valid
   end
 
   it "is invalid without a latitude" do

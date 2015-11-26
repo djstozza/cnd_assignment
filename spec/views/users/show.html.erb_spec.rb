@@ -6,7 +6,9 @@ RSpec.describe "users/show", type: :view do
       :email => "Email",
       :username => "Username",
       :latitude => 1.5,
-      :longitude => 1.5
+      :longitude => 1.5,
+      :password => "12345678",
+      :password_confirmation => "12345678"
     ))
   end
 

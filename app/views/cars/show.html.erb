@@ -1,4 +1,4 @@
-<h2>Car <%= @car.vehicle_id %></h2>
+<h2>Car <%= @car.id %></h2>
 <p id="notice"><%= notice %></p>
 
 <div id="map" class="mapShow"></div>
@@ -15,7 +15,7 @@
 
 	<tbody>
 		<tr>
-			<td>Car <%= @car.vehicle_id %></td>
+			<td>Car <%= @car.id %></td>
         	<td><%= @car.latitude %></td>
         	<td><%= @car.longitude %></td>
 			<td><%= distance([@current_user.latitude, @current_user.longitude],[@car.latitude, @car.longitude]).to_i %> km</td>

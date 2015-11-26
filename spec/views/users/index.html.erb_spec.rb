@@ -7,13 +7,17 @@ RSpec.describe "users/index", type: :view do
         :email => "Email",
         :username => "Username",
         :latitude => 1.5,
-        :longitude => 1.5
+        :longitude => 1.5,
+        :password => "12345678",
+        :password_confirmation => "12345678"
       ),
       User.create!(
         :email => "Email",
         :username => "Username",
         :latitude => 1.5,
-        :longitude => 1.5
+        :longitude => 1.5,
+        :password => "12345678",
+        :password_confirmation => "12345678"
       )
     ])
   end

@@ -21,7 +21,7 @@
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= link_to "Car #{car.vehicle_id}", car %></td>
+        <td><%= link_to "Car #{car.id}", car %></td>
         <td><%= car.latitude %></td>
         <td><%= car.longitude %></td>
         <td><%= distance([@current_user.latitude, @current_user.longitude],[car.latitude,car.longitude]).to_i %> km</td>
