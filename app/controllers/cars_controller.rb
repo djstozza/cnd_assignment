@@ -99,7 +99,7 @@ class CarsController < ApplicationController
       end
 
       arr.each_with_index do |car, i|
-        vehicle = Car.where(:id => i).first
+        vehicle = Car.find(i)
         if vehicle.present? && vehicle.latitude == car['latitude'] && vehicle.longitude == car['longitude']
           next
         elsif vehicle.present? && (vehicle.latitude != car['latitude'] || vehicle.longitude != car['longitude'])
