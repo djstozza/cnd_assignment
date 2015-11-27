@@ -2,7 +2,7 @@ module CarsHelper
 	# Haversine formula: giving great-circle distances between two points on a sphere from their longitudes and latitudes
 	def distance loc1, loc2
     	rad_per_deg = Math::PI/180
-	    moon_radius_km = 1737 
+	    moon_radius_km = 1738 
 	    dlat_rad = (loc2[0]-loc1[0]) * rad_per_deg
 	    dlon_rad = (loc2[1]-loc1[1]) * rad_per_deg
 	    lat1_rad, lon1_rad = loc1.map {|i| i * rad_per_deg }

@@ -16,6 +16,6 @@ RSpec.describe CarsHelper, type: :helper do
   	user = FactoryGirl.build(:user, latitude: 65, longitude: 65)
   	car = FactoryGirl.build(:car, latitude: -32, longitude: -43)
   	d = distance([user.latitude, user.longitude], [car.latitude, car.latitude])
-  	expect(d).to eq 3686
+  	expect(d).to eq 3688
   end
 end

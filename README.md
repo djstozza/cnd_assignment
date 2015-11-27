@@ -27,10 +27,6 @@ I utilised the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formu
 	* Shoulda-Matchers
 	* Curb
 
-### Bugs
-
-No real bugs to report so far except for the fact that the distance values I obtained from the Haversine formula in JavaScript are lower than their Ruby equivalents by approximately 1.003, which I had to factor into my calculations.
-
 
 ### Still to come
 

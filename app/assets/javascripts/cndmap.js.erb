@@ -1,3 +1,4 @@
+//Setting up Google Maps with the custom Moon plugin.
 initMap = function () {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: gon.current_user.latitude, lng: gon.current_user.longitude},
@@ -29,6 +30,7 @@ initMap = function () {
   map.mapTypes.set('moon', moonMapType);
   map.setMapTypeId('moon');
 
+  //Setting up the marker for a signed-in user based on the coordinates parsed through from the sessions controller using gon.
   var userLatLng = {lat: gon.current_user.latitude, lng: gon.current_user.longitude}
   var base_icon = "<%= image_path 'spaceport-2.png' %>"
   var user_marker = new google.maps.Marker({
@@ -58,9 +60,11 @@ initMap = function () {
   
   var carIcon = "<%= image_path 'carrental.png' %>";
 
+  //Renders the coordinates of a car on it's show page since div.mapShow only occurs there
   if ($('div.mapShow').length > 0) {
     var carLatLng = {lat: gon.car.latitude, lng: gon.car.longitude};
 
+    //Setting up the marker for a car based on the coordinates that were parsed through the car controller.
     var marker = new google.maps.Marker({
       icon: carIcon,
       position: carLatLng,
@@ -89,6 +93,8 @@ initMap = function () {
       infowindow.open(map, marker);
     });
   
+  //Uses an Underscore each loop to iterate through all the coordinates of the cars in their index page. 
+  //Only occurs on the index page since div.indexMap is only found there
   } else if ($('div.indexMap').length > 0) {
     _.each(gon.cars, function (car) {
       var carLatLng = {lat: car.latitude, lng: car.longitude};
@@ -100,11 +106,7 @@ initMap = function () {
         title: 'Car ' + car.id
       });
       marker.setMap(map);
-
-      // var latLngA = new google.maps.LatLng(gon.current_user.latitude, gon.current_user.longitude);
-      // var latLngB = new google.maps.LatLng(car.latitude, car.longitude);
-      // var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA,latLngB);
-     
+    
       var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
@@ -130,10 +132,12 @@ initMap = function () {
   
 }
 
-//Haversine Formula - finding shortest distance between two coordinates over a sphere. Initially used the google.maps.geometry.spherical.computeDistanceBetween( latLngA, latLngB ) plugin, however, that uses a the Earth's radius 6371km. This would mean that all the distance calculations would be out significantly.
+//Haversine Formula - finding shortest distance between two coordinates over a sphere.
+//Initially used the google.maps.geometry.spherical.computeDistanceBetween( latLngA, latLngB ) plugin, however, that uses a the Earth's radius 6371km.
+//This would mean that all the distance calculations would be out significantly.
 
 distance = function (latlng1, latlng2) {
-  var R = 1731, // Radius of the Moon, in km.
+  var R = 1738, // Radius of the Moon, in km.
   dLat = (latlng2.lat - latlng1.lat) * (Math.PI/180),
   dLon = (latlng2.lng - latlng1.lng) * (Math.PI/180),
   a = Math.sin(dLat/2)*Math.sin(dLat/2) +
@@ -143,7 +147,7 @@ distance = function (latlng1, latlng2) {
   c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)),
   d = R * c;
   console.log(parseInt(d*1.03));
-  return parseInt(Math.ceil(d*1.0029)) + ' km'; //JavaScript formula slightly off ruby calcs by between 1.027 and 1.035... I trust ruby over javascript when it comes to calculations...
+  return parseInt(d) + ' km';
 }
 
 
