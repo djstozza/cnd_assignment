@@ -146,7 +146,6 @@ distance = function (latlng1, latlng2) {
       Math.sin(dLon/2) * Math.sin(dLon/2),
   c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)),
   d = R * c;
-  console.log(parseInt(d*1.03));
   return parseInt(d) + ' km';
 }
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   get 'session/new'
 
   resources :users
