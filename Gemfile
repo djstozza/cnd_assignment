@@ -23,6 +23,7 @@ gem 'httparty'
 gem 'gon'
 gem 'curb'
 gem 'sidekiq'
+gem 'puma'
 gem 'heroku-deflater', :group => :production
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
