@@ -15,7 +15,7 @@ RSpec.describe CarsHelper, type: :helper do
   it "should use the Haversine formula to measure the distnace between the coordinates of a user and a car" do
   	user = FactoryGirl.build(:user, latitude: 65, longitude: 65)
   	car = FactoryGirl.build(:car, latitude: -32, longitude: -43)
-  	d = distance([user.latitude, user.longitude], [car.latitude, car.latitude])
-  	expect(d).to eq 3688
+  	d = distance([user.latitude, user.longitude], [car.latitude, car.longitude])
+  	expect(d).to eq 3829
   end
 end
