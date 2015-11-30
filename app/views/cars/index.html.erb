@@ -24,6 +24,7 @@
         <td><%= link_to "Car #{car.id}", car %></td>
         <td><%= car.latitude %></td>
         <td><%= car.longitude %></td>
+        <!-- Uses the distance function in the car in the cars helper to work out how far a signed-in user is from each of the cars -->
         <td><%= distance([@current_user.latitude, @current_user.longitude],[car.latitude,car.longitude]) %> km</td>
       </tr>
     <% end %>

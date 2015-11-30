@@ -12,7 +12,7 @@ class CarsController < ApplicationController
     @cars.each do |car|
       car_array << car
     end
-    gon.cars = car_array
+    gon.cars = car_array # Using gon to make the car's data accessible to JavaScript for mapping purposes
   end
 
   # GET /cars/1
@@ -72,12 +72,10 @@ class CarsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_car
       @car = Car.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
       params.require(:car).permit(:latitude, :longitude)
     end
@@ -86,6 +84,7 @@ class CarsController < ApplicationController
       redirect_to root_path unless @current_user.present?
     end
 
+    # The Sidekiq worker (CarWorker) calls the LunarLocation API when the car index page is clicked.
     def get_cars
       CarWorker.new.perform
     end

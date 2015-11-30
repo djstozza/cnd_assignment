@@ -16,8 +16,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'underscore-rails'
 gem 'json'
-gem 'gmaps4rails'
-gem 'geokit-rails'
 gem 'bootstrap-sass'
 gem 'httparty'
 gem 'gon'
