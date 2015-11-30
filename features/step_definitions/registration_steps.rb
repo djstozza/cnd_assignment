@@ -30,6 +30,6 @@ When(/^I login with '(.*)'$/) do |email|
   find('input#sign-in').click
 end
 
-Then(/^I should see '(.*)'$/) do |expected|
-  assert page.has_content?(expected)
+Then (/I should be on the '(.*)' page/) do |page_name|
+  assert page.current_path == ("#{page_name.downcase.gsub(' ','_')}_path")
 end
